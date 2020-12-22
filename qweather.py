@@ -17,7 +17,7 @@ requests = requests.session()
 requests.keep_alive = False
 
 # 初始化MySQL连接
-client = pymysql.connect("39.106.111.245", "hanzhuo", "000403", "qweather")
+client = pymysql.connect("IP", "USER", "PWD", "qweather")
 cursor = client.cursor()
 sql = """INSERT INTO `qweather`.`weather` (`ID`, `region`, `name`, `time`, `aqi`, `level`, `category`, `primary`, `pm10`, `pm2p5`, `no2`, `so2`, `co`, `o3`, `tempMin`, `tempMax`, `text`, `windScale`, `windSpeed`, `humidity`, `precip`, `pressure`) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}');"""
 
@@ -31,7 +31,7 @@ def history():
     """
 
     # api_list = ["weather", "air"]
-    api = "https://datasetapi.qweather.com/v7/historical/{0}?key=eb13ce2341114e848f0a682dfc453b2b&location={1}&date={2}"
+    api = "https://datasetapi.qweather.com/v7/historical/{0}?key=商用ｋｅｙ&location={1}&date={2}"
 
     # 获取前10天的日期
     for day in range(4, 11):
@@ -71,8 +71,8 @@ def now():
 
     int_date = (datetime.datetime.now() - datetime.timedelta(days=0))
     date = int_date.strftime("%Y-%m-%d")
-    weather_url = "https://devapi.qweather.com/v7/weather/3d?location={0}&key=7f7e08cd8f794bb6a34ff556775ec0a4"
-    air_api = "https://devapi.qweather.com/v7/air/now?location={0}&key=7f7e08cd8f794bb6a34ff556775ec0a4"
+    weather_url = "https://devapi.qweather.com/v7/weather/3d?location={0}&key=开发ｋｅｙ"
+    air_api = "https://devapi.qweather.com/v7/air/now?location={0}&key=开发ｋｅｙ"
     # 获取不同的地区ID
     for i in range(0, len(table)):
         # 获取市级数据
